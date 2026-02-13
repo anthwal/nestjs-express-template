@@ -36,11 +36,11 @@ export class RunMigrationService {
             name,
             up: async () =>
               import(path as string).then((migration) =>
-                migration.up(context, this.connection.Sequelize),
+                migration.default.up(context, this.connection.Sequelize),
               ),
             down: async () =>
               import(path as string).then((migration) =>
-                migration.down(context, this.connection.Sequelize),
+                migration.default.down(context, this.connection.Sequelize),
               ),
           };
         },

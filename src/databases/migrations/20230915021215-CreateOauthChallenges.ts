@@ -3,7 +3,7 @@
 import { QueryInterface, Sequelize } from 'sequelize';
 import { DataType } from 'sequelize-typescript';
 
-module.exports = {
+export default {
   up: async (queryInterface: QueryInterface, Sequelize: Sequelize) => {
     /**
      * Add altering commands here.
@@ -14,12 +14,12 @@ module.exports = {
     await queryInterface.createTable('oauth_authorization_challenges', {
       id: {
         type: DataType.UUID,
-        defaultValue: Sequelize.literal(`uuid_generate_v4()`),
         allowNull: false,
         primaryKey: true,
+        defaultValue: DataType.UUIDV4(),
       },
       user_id: {
-        type: DataType.BIGINT,
+        type: DataType.UUID,
         allowNull: false,
       },
       client_id: {

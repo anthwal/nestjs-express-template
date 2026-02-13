@@ -3,7 +3,7 @@
 import { QueryInterface, Sequelize } from 'sequelize';
 import { DataType } from 'sequelize-typescript';
 
-module.exports = {
+export default {
   up: async (queryInterface: QueryInterface, Sequelize: Sequelize) => {
     /**
      * Add altering commands here.
@@ -16,7 +16,7 @@ module.exports = {
         type: DataType.UUID,
         primaryKey: true,
         allowNull: false,
-        defaultValue: Sequelize.literal(`uuid_generate_v4()`),
+        defaultValue: DataType.UUIDV4(),
       },
       name: {
         type: DataType.STRING,
@@ -24,7 +24,8 @@ module.exports = {
       },
       secret: {
         type: DataType.STRING(100),
-        allowNull: false,
+        allowNull: true,
+        defaultValue: null,
       },
       is_revoked: {
         type: DataType.BOOLEAN,

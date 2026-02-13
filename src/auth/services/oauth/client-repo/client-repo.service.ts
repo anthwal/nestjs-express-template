@@ -33,8 +33,7 @@ export class ClientRepoService {
     id: string,
     transaction?: Transaction,
   ): Promise<ClientModel | null> {
-    const result = await this.clientModel.findByPk(id, { transaction });
-    return result || null;
+    return this.clientModel.findByPk(id, { transaction });
   }
 
   /**
@@ -48,11 +47,10 @@ export class ClientRepoService {
     secret: string,
     transaction?: Transaction,
   ): Promise<ClientModel | null> {
-    const result = await this.clientModel.findOne({
+    return this.clientModel.findOne({
       where: { id, secret },
       transaction,
     });
-    return result ? result : null;
   }
 
   /**
@@ -70,7 +68,10 @@ export class ClientRepoService {
       .build()
       .set({
         name,
-        secret: this.randomByeGenerator.generateRandomByte(40).toString('hex'),
+        secret:
+          grantType === GrantTypes.PKCE
+            ? null
+            : this.randomByeGenerator.generateRandomByte(40).toString('hex'),
         grant_type: grantType,
       })
       .save({ transaction });

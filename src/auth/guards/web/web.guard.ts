@@ -27,10 +27,10 @@ export class WebGuard extends AuthGuard('local') {
     const request = context.switchToHttp().getRequest<Request>();
 
     const session: Session & {
-      auth?: { isAuth: boolean; userId: number | null };
+      auth?: { isAuth: boolean; userId: string | null };
     } = request.session || ({} as any);
 
-    let userId: number | null | boolean;
+    let userId: string | null | boolean;
     try {
       userId = this.getUserFromSession(session);
     } catch (err) {
@@ -50,7 +50,7 @@ export class WebGuard extends AuthGuard('local') {
    */
   protected getUser(
     request: Request,
-    userId: number | null,
+    userId: string | null,
   ): Observable<UserModel | null | boolean> {
     return from(
       userId
@@ -75,8 +75,8 @@ export class WebGuard extends AuthGuard('local') {
    * @protected
    */
   protected getUserFromSession(
-    session: Session & { auth?: { isAuth: boolean; userId: number | null } },
-  ): number | null {
+    session: Session & { auth?: { isAuth: boolean; userId: string | null } },
+  ): string | null {
     if (!session.auth) {
       session.auth = { isAuth: false, userId: null };
     }
@@ -93,7 +93,7 @@ export class WebGuard extends AuthGuard('local') {
    */
   protected checkAuth(auth: {
     isAuth: boolean;
-    userId: number | null;
+    userId: string | null;
   }): boolean {
     if (!auth.isAuth || !auth.userId) {
       throw new UnauthorizedException();
@@ -107,7 +107,7 @@ export class WebGuard extends AuthGuard('local') {
    * @protected
    */
   protected resetSession(
-    session: Session & { auth?: { isAuth: boolean; userId: number | null } },
+    session: Session & { auth?: { isAuth: boolean; userId: string | null } },
   ): void {
     session.auth = session.auth || { isAuth: false, userId: null };
     session.auth.isAuth = false;

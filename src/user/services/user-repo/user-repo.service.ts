@@ -16,9 +16,7 @@ export class UserRepoService {
     email: string,
     transaction?: Transaction,
   ): Promise<UserModel | null> {
-    return this.userModel
-      .findOne({ where: { email }, transaction })
-      .then((result) => (result ? result : null));
+    return this.userModel.findOne({ where: { email }, transaction });
   }
 
   /**
@@ -42,7 +40,7 @@ export class UserRepoService {
    * @param id
    * @param transaction
    */
-  public findOrFail(id: number, transaction?: Transaction): Promise<UserModel> {
+  public findOrFail(id: string, transaction?: Transaction): Promise<UserModel> {
     return this.userModel.findByPk(id, { transaction, rejectOnEmpty: true });
   }
 }

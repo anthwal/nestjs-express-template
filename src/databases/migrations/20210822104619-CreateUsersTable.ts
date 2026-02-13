@@ -3,7 +3,7 @@
 import { QueryInterface, Sequelize } from 'sequelize';
 import { DataType } from 'sequelize-typescript';
 
-module.exports = {
+export default {
   up: async (queryInterface: QueryInterface, Sequelize: Sequelize) => {
     /**
      * Add altering commands here.
@@ -13,10 +13,10 @@ module.exports = {
      */
     await queryInterface.createTable('users', {
       id: {
-        type: DataType.BIGINT,
+        type: DataType.UUID,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
+        defaultValue: DataType.UUIDV4(),
       },
       email: {
         type: DataType.STRING,

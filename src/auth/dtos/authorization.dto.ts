@@ -32,7 +32,7 @@ export class AuthorizationDto {
   @IsNotEmpty()
   @IsString()
   @IsIn(['sha512', 'sha256'])
-  public algorithm: 'sha512' | 'sha526' | null = null;
+  public algorithm: 'sha512' | 'sha256' | null = null;
 
   @IsNotEmpty()
   @IsUrl({

@@ -51,7 +51,7 @@ export class AuthService {
    * Returns current logged in user detail by user id
    * @param userId
    */
-  public getLoggedInUser(userId: number): Promise<UserModel> {
+  public getLoggedInUser(userId: string): Promise<UserModel> {
     return this.userRepo.findOrFail(userId);
   }
 
@@ -62,7 +62,7 @@ export class AuthService {
    */
   public mapSessionWithUser(
     session: Session & {
-      auth?: { isAuth: boolean; userId: number | null };
+      auth?: { isAuth: boolean; userId: string | null };
     },
     user: UserModel,
   ): Promise<boolean> {

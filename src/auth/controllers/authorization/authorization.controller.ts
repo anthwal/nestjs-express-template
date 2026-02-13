@@ -9,6 +9,7 @@ import {
   UseInterceptors,
   Session as SessionDecorator,
   Header,
+  UseFilters,
 } from '@nestjs/common';
 import { SessionErrorValidationInterceptor } from '../../../session-manager/interceptors/session-error-validation/session-error-validation.interceptor';
 import { OldInputsInterceptor } from '../../../session-manager/interceptors/old-inputs/old-inputs.interceptor';
@@ -37,6 +38,7 @@ import { RestartLoginRedirector } from '../../redirectors/restart-login/restart-
 import { AppendFormActionHeaderInterceptor } from '../../interceptors/append-form-action-header/append-form-action-header.interceptor';
 import { AuthorizationChallengeModel } from '../../../databases/models/oauth/authorization-challenge.model';
 import { MapUserToSessionInterceptor } from '../../interceptors/map-user-to-session/map-user-to-session.interceptor';
+import { InvalidAuthCredentialsFilter } from '../../filters/invalid-auth-credentials/invalid-auth-credentials.filter';
 
 @ApiExcludeController()
 @Controller('oauth/authorization')
@@ -46,6 +48,7 @@ export class AuthorizationController {
     protected readonly authorizationChallengeRepo: AuthorizationChallengeRepoService,
   ) {}
 
+  @UseFilters(InvalidAuthCredentialsFilter)
   @UseInterceptors(SessionErrorValidationInterceptor, OldInputsInterceptor)
   @Render('authorization/login')
   @Get()

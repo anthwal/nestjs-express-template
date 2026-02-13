@@ -1,4 +1,10 @@
-import { AutoIncrement, Column, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+  Column,
+  DataType,
+  Default,
+  PrimaryKey,
+  Table,
+} from 'sequelize-typescript';
 import { DatesMapping } from './dates-mapping';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { EventRegisterCallbackService } from '../../common/services/event-register-callback/event-register-callback.service';
@@ -13,7 +19,7 @@ export class BaseModel<T extends object> extends DatesMapping<T> {
   declare public static UrlGenerator: UrlBuilderService;
 
   @PrimaryKey
-  @AutoIncrement
-  @Column
-  declare public id: number;
+  @Default(DataType.UUIDV4)
+  @Column({ type: DataType.UUID })
+  declare public id: string;
 }

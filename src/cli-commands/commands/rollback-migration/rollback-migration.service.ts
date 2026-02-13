@@ -27,7 +27,7 @@ export class RollbackMigrationService {
       describe: 'Number of migrations to rollback',
       default: '',
       demandOption: false,
-      type: 'string',
+      type: 'number',
     })
     till?: number,
   ) {
@@ -44,11 +44,11 @@ export class RollbackMigrationService {
             name,
             up: async () =>
               import(path as string).then((migration) =>
-                migration.up(context, this.connection.Sequelize),
+                migration.default.up(context, this.connection.Sequelize),
               ),
             down: async () =>
               import(path as string).then((migration) =>
-                migration.down(context, this.connection.Sequelize),
+                migration.default.down(context, this.connection.Sequelize),
               ),
           };
         },

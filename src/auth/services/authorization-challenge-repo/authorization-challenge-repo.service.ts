@@ -28,7 +28,7 @@ export class AuthorizationChallengeRepoService {
     messageBefore: 'Creating authorization challenge record',
   })
   public createWithPkceCodeChallenge(
-    user: UserModel | number,
+    user: UserModel | string,
     client: ClientModel | string,
     data: Pick<AuthorizationChallengeModel, 'challenge' | 'algorithm'>,
     transaction?: Transaction,
@@ -36,7 +36,7 @@ export class AuthorizationChallengeRepoService {
     return this.authorizationChallengeModel
       .build()
       .set({
-        user_id: typeof user === 'number' ? user : user.id,
+        user_id: typeof user === 'string' ? user : user.id,
         client_id: typeof client === 'string' ? client : client.id,
         ...data,
       })
@@ -114,14 +114,14 @@ export class AuthorizationChallengeRepoService {
    * @param transaction
    */
   public createForAuthorizationCode(
-    user: UserModel | number,
+    user: UserModel | string,
     client: ClientModel | string,
     transaction?: Transaction,
   ): Promise<AuthorizationChallengeModel> {
     return this.authorizationChallengeModel
       .build()
       .set({
-        user_id: typeof user === 'number' ? user : user.id,
+        user_id: typeof user === 'string' ? user : user.id,
         client_id: typeof client === 'string' ? client : client.id,
         challenge: '',
         algorithm: '',

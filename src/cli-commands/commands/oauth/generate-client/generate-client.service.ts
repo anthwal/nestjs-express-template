@@ -32,7 +32,7 @@ export class GenerateClientService {
       name: 'grantType',
       type: 'string',
       description: 'Type of the client',
-      choices: Array.from($enum(GrantTypes).values()),
+      choices: $enum(GrantTypes).getValues(),
     })
     grantType: GrantTypes,
   ) {

@@ -6,10 +6,10 @@ import { RegisterModel } from '../model-bootstrap/default-connection-models';
 @Table({ tableName: 'users' })
 export class UserModel extends BaseModel<UserModel> {
   @Unique
-  @Column
+  @Column({ type: DataType.STRING })
   declare public email: string;
 
-  @Column(DataType.STRING)
+  @Column({ type: DataType.STRING })
   declare public password: string | null;
 
   public toJSON(): any {

@@ -14,7 +14,8 @@ export class ContextInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const request = context.switchToHttp().getRequest<Request>();
 
-    (request.body as never as { __CONTEXT: unknown }).__CONTEXT = {
+    request.body = (request.body as Record<string, any>) ?? {};
+    (request.body as Record<string, any>).__CONTEXT = {
       params: request.params,
       query: request.query,
       user: request.user ? (request.user as UserModel).id : null,
