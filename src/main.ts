@@ -119,7 +119,7 @@ function setupApiDocumentation(app: INestApplication) {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api-documentation/v1', app, document);
+  SwaggerModule.setup('api-documentation', app, document);
 }
 
 clusterStart()
