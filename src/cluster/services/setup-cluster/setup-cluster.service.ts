@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import cluster from 'cluster';
-import { Cluster, Worker } from 'cluster';
-import os from 'os';
+import cluster, { Cluster, Worker } from 'node:cluster';
+import os from 'node:os';
 import { ClusterConfig } from '../../../environment/environment-types.interface';
 import {
   auditTime,

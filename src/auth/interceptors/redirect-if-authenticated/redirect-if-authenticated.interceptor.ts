@@ -29,7 +29,7 @@ export class RedirectIfAuthenticatedInterceptor implements NestInterceptor {
           if (err instanceof UnauthorizedException) {
             return of(false);
           }
-          return throwError(err);
+          return throwError(() => err);
         }),
       )
       .pipe(
