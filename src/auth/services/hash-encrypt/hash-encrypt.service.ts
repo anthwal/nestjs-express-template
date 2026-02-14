@@ -1,9 +1,9 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { hash, compare } from 'bcrypt';
-import { createCipheriv, scrypt, createDecipheriv } from 'crypto';
+import { createCipheriv, scrypt, createDecipheriv } from 'node:crypto';
 import { ConfigService } from '@nestjs/config';
-import { promisify } from 'util';
-import { Buffer } from 'buffer';
+import { promisify } from 'node:util';
+import { Buffer } from 'node:buffer';
 
 @Injectable()
 export class HashEncryptService implements OnApplicationBootstrap {
