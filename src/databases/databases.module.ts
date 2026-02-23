@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DatabaseConfigService } from './services/database-config/database-config.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { ConnectionNames } from './connection-names';
 import { SequelizeModule } from '@nestjs/sequelize';
 
@@ -12,7 +12,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
       name: ConnectionNames.DefaultConnection,
     }),
   ],
-  providers: [ConfigService, DatabaseConfigService],
+  providers: [DatabaseConfigService],
   exports: [SequelizeModule],
 })
 export class DatabasesModule {}

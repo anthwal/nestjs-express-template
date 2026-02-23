@@ -15,5 +15,13 @@ import { KillForApiInterceptor } from './interceptors/kill-for-api/kill-for-api.
     SetupIntendInterceptor,
     KillForApiInterceptor,
   ],
+  exports: [
+    SessionConfigService,
+    SessionMapPreviousUrlInterceptor,
+    IntendManagerService,
+    RedirectFromLoginFilter,
+    SetupIntendInterceptor,
+    KillForApiInterceptor,
+  ],
 })
 export class SessionManagerModule {}

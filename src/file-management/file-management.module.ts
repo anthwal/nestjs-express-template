@@ -6,7 +6,8 @@ import { join } from 'path';
   imports: [
     NestjsFormDataModule.config({
       storage: FileSystemStoredFile,
-      autoDeleteFile: true,
+      cleanupAfterFailedHandle: true,
+      cleanupAfterSuccessHandle: true,
       fileSystemStoragePath: join(process.cwd(), 'storage', 'uploads', 'tmp'),
       isGlobal: true,
     }),

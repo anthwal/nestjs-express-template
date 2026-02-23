@@ -16,7 +16,7 @@ import { OldInputsInterceptor } from '../../../session-manager/interceptors/old-
 import { LoggingDecorator } from '../../../common/decorators/logging.decorator';
 import { AuthorizationDto } from '../../dtos/authorization.dto';
 import { RedirectGenerator } from '../../../common/decorators/redirect-generator.decorator';
-import { AuthorizationRedirector } from '../../redirections/authorization/authorization.redirector';
+import { AuthorizationRedirector } from '../../redirectors/authorization/authorization.redirector';
 import { AuthorizationGuard } from '../../guards/authorization/authorization.guard';
 import { RedirectRouteInterceptor } from '../../../common/interceptors/redirect-route/redirect-route.interceptor';
 import { TransactionInterceptor } from '../../../transaction-manager/interceptors/transaction/transaction.interceptor';
@@ -30,7 +30,7 @@ import { AuthorizationChallengeRepoService } from '../../services/authorization-
 import { ApiExcludeController } from '@nestjs/swagger';
 import { PasswordDto } from '../../dtos/password.dto';
 import { randomUUID } from 'node:crypto';
-import { PasswordRedirector } from '../../redirections/password/password.redirector';
+import { PasswordRedirector } from '../../redirectors/password/password.redirector';
 import { Session } from 'express-session';
 import { CheckShowPasswordGuard } from '../../guards/check-show-password/check-show-password.guard';
 import { CanRestartLoginGuard } from '../../guards/can-restart-login/can-restart-login.guard';
